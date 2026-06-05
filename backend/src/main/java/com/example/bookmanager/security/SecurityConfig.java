@@ -33,6 +33,7 @@ public class SecurityConfig {
     ) throws Exception {
       return http
         .csrf(csrf -> csrf.disable())
+        .cors(cors -> {})
         .sessionManagement(session ->
                 session.sessionCreationPolicy(
                         SessionCreationPolicy.STATELESS))
