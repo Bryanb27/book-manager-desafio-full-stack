@@ -15,11 +15,12 @@ public class CorsConfig {
         CorsConfiguration configuration =
                 new CorsConfiguration();
 
-        configuration.setAllowedOrigins(
-                List.of(
-                "http://localhost:3000",
-                "https://book-manager-desafio-full-stack-gamma.vercel.app")
-        );
+        configuration.setAllowedOrigins(List.of(
+        "http://localhost:3000",
+        "https://book-manager-desafio-full-stack-gamma.vercel.app",
+        "https://book-manager-desafio-full-stack-git-main-bryanb27s-projects.vercel.app",
+        "https://book-manager-desafio-full-stack-j1qdkiqai-bryanb27s-projects.vercel.app"
+        ));
 
         configuration.setAllowedMethods(
                 List.of(
