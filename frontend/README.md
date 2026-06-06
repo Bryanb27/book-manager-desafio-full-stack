@@ -1,36 +1,222 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Book Manager Frontend
 
-## Getting Started
+Frontend application for the Book Manager project, built with Next.js, TypeScript, Tailwind CSS, and Axios.
 
-First, run the development server:
+The application consumes the REST API provided by the backend service and allows users to:
+
+* Register an account
+* Log in using JWT authentication
+* Create books
+* List books
+* Search books by title
+* Edit books
+* Delete books
+* Log out
+
+---
+
+## Technologies
+
+* Next.js 15
+* React
+* TypeScript
+* Tailwind CSS
+* Axios
+
+---
+
+## Project Structure
+
+```text
+frontend
+│
+├── app
+│   ├── page.tsx
+│   │
+│   ├── login
+│   │   └── page.tsx
+│   │
+│   ├── register
+│   │   └── page.tsx
+│   │
+│   └── books
+│       ├── page.tsx
+│       │
+│       ├── new
+│       │   └── page.tsx
+│       │
+│       └── [id]
+│           └── edit
+│               └── page.tsx
+│
+├── services
+│   └── api.ts
+│
+├── types
+│   └── book.ts
+│
+├── public
+│
+├── package.json
+├── next.config.ts
+└── tsconfig.json
+```
+
+---
+
+## Folder Responsibilities
+
+### app/
+
+Contains all application pages using the Next.js App Router.
+
+#### login/
+
+Authentication page.
+
+#### register/
+
+User registration page.
+
+#### books/
+
+Book management pages.
+
+* List books
+* Search books
+* Delete books
+
+#### books/new/
+
+Create a new book.
+
+#### books/[id]/edit/
+
+Edit an existing book.
+
+---
+
+### services/
+
+Contains integrations with external services.
+
+#### api.ts
+
+Centralized Axios configuration used to communicate with the backend API.
+
+---
+
+### types/
+
+Contains TypeScript interfaces and types shared across the application.
+
+---
+
+## Environment Variables
+
+Create a `.env.local` file:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8081
+```
+
+Example for production:
+
+```env
+NEXT_PUBLIC_API_URL=https://your-backend-url.com
+```
+
+---
+
+## Installation
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+---
+
+## Running Locally
+
+Start development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Application will be available at:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Build for Production
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Run production build:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm start
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Authentication
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The application uses JWT authentication.
+
+After login:
+
+1. The backend returns a JWT token.
+2. The token is stored in Local Storage.
+3. Protected requests include:
+
+```http
+Authorization: Bearer <token>
+```
+
+4. Users are redirected to the Books page after successful authentication.
+
+---
+
+## Main Routes
+
+### Authentication
+
+```text
+/login
+/register
+```
+
+### Books
+
+```text
+/books
+/books/new
+/books/{id}/edit
+```
+
+---
+
+## Deployment
+
+The frontend is designed to be deployed on Vercel.
+
+Required environment variable:
+
+```env
+NEXT_PUBLIC_API_URL=<backend-url>
+```
+
+Example:
+
+```env
+NEXT_PUBLIC_API_URL=https://book-manager-api.onrender.com
+```
